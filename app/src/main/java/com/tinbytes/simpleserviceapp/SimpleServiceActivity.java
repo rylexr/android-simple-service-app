@@ -11,14 +11,12 @@ import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class SimpleServiceActivity extends AppCompatActivity implements ServiceConnection {
   private static final String TAG = SimpleServiceActivity.class.getSimpleName();
   private static final String PACKAGE_NAME = "com.tinbytes.simpleserviceapp";
 
-  private TextView tvLocation;
   private IRemoteInterface remoteInterface;
   private boolean bound;
 
@@ -56,7 +54,18 @@ public class SimpleServiceActivity extends AppCompatActivity implements ServiceC
         doUnbindService();
       }
     });
-    tvLocation = (TextView) findViewById(R.id.tvLocation);
+    findViewById(R.id.bShowLocation).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        doShowLocation();
+      }
+    });
+  }
+
+  private void doShowLocation() {
+    Intent i = new Intent(this, GPXIntentService.class);
+    i.setPackage(PACKAGE_NAME); // Workaround for explicit intents in Lollipop
+    startService(i);
   }
 
   private void doStartLocationService() {
@@ -79,9 +88,10 @@ public class SimpleServiceActivity extends AppCompatActivity implements ServiceC
     }
     try {
       Location l = remoteInterface.getLastLocation();
-      if (l != null) {
-        tvLocation.setText("Location: [lon=" + l.getLongitude() + ",lat=" + l.getLatitude() + "]");
-      }
+      String text = l != null ? "Location: [lon=" + l.getLongitude() +
+          ",lat=" + l.getLatitude() + "]" : "Unknown Location";
+      Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+      Log.d(TAG, text);
     } catch (RemoteException e) {
       Toast.makeText(this, "Location cannot be acquired", Toast.LENGTH_SHORT).show();
       Log.e(TAG, "Error acquiring location", e);

@@ -8,45 +8,41 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SimpleServiceActivity">
 
-    <TextView
-        android:id="@+id/tvLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Unknown location"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
     <Button
         android:id="@+id/bBind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bind Remote"
-        android:layout_above="@+id/bGetLocation"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/bGetLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Get Location From Remote"
-        android:layout_above="@+id/bUnbind"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/bBind"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/bUnbind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Unbind Remote"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/bGetLocation"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start Location Service"
         android:id="@+id/bStartLocationService"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -54,6 +50,46 @@
         android:text="Stop Location Service"
         android:id="@+id/bStopLocationService"
         android:layout_below="@+id/bStartLocationService"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Unbound Service"
+        android:id="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="27dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Bound Service"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/bStopLocationService"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Intent Service"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/bUnbind"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Location"
+        android:id="@+id/bShowLocation"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
